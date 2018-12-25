@@ -4,22 +4,22 @@ import java.util.*
 
 fun main(args: Array<String>) {
     val scanner = Scanner(System.`in`)
-    var check = 0
-
-    while(check == 0){
+    var check = true
+    while (check){
+        println("(If you enter -1, exit the system.)")
         print("Please enter number of ticket: ")
         var ticketNum = scanner.nextInt()
+        if (ticketNum == -1) break
         print("How many round-trip tickets: ")
         var roundTrip = scanner.nextInt()
-        if(ticketNum<roundTrip || ticketNum<=0 || roundTrip <= 0){ // 測試輸入票數是否正確
-            println("Error: Please enter again")
-        }
-        else{
-            check = 1 // 表示輸入正確，跳出迴圈
-            val ticket = TicketKotlin(ticketNum,roundTrip)
+        if (ticketNum<roundTrip || ticketNum<0 || roundTrip<0){
+            println("Error. Please enter again.")
+        } else {
+            var ticket = TicketKotlin(ticketNum,roundTrip)
             ticket.printInfo()
         }
     }
+    println("Exit the system.")
 }
 
 class TicketKotlin(var ticketNum:Int, var roundTrip:Int){
